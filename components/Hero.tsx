@@ -9,13 +9,13 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-slate-50 to-gray-100">
       {/* Animated background grid */}
-      <div 
-  className="absolute inset-0 opacity-30 pointer-events-none"
-  style={{
-    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23e5e5e5' fill-opacity='0.4'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E")`,
-    backgroundSize: "80px 80px",
-  }}
-/>
+      <div
+        className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23e5e5e5' fill-opacity='0.4'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: "80px 80px",
+        }}
+      />
 
       {/* Animated gradient orbs */}
       <motion.div
@@ -61,19 +61,20 @@ export function Hero() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full max-w-md mx-auto lg:mx-0">
               <Button
                 size="lg"
-                className="bg-[#1F3D2B] hover:bg-[#274F38] text-white px-8 py-6 text-lg group transition-colors"
+                className="bg-[#1F3D2B] hover:bg-[#274F38] text-white px-8 py-6 text-lg group transition-colors w-full sm:w-auto min-h-12"
               >
                 Book a Demo
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Link href="#contact">
+
+              <Link href="#contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-[#3E6B53] text-[#1F3D2B] hover:bg-[#3E6B53]/10 hover:text-[#274F38] px-8 py-6 text-lg transition-colors"
+                  className="border-[#3E6B53] text-[#1F3D2B] hover:bg-[#3E6B53]/10 hover:text-[#274F38] px-8 py-6 text-lg transition-colors w-full min-h-12"
                 >
                   Request a Quote
                 </Button>

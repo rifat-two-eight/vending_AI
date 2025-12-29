@@ -62,9 +62,13 @@ export function FrictionlessExperience() {
   return (
     <section ref={ref} className="py-24 bg-gray-50 relative overflow-hidden">
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      </div>
+      <div 
+  className="absolute inset-0 opacity-30 pointer-events-none"
+  style={{
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23e5e5e5' fill-opacity='0.4'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E")`,
+    backgroundSize: "80px 80px",
+  }}
+/>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

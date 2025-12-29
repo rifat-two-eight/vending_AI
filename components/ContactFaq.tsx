@@ -103,7 +103,6 @@ export function ContactFAQ() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
-
           {/* CONTACT FORM */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -208,28 +207,30 @@ export function ContactFAQ() {
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex items-center justify-between p-6 text-left"
+                    className="w-full flex items-start justify-between p-6 text-left gap-6"
                   >
-                    <span className="font-semibold text-slate-800">
+                    {/* Question text - takes all available space */}
+                    <span className="font-semibold text-slate-800 flex-1 text-left">
                       {faq.question}
                     </span>
-                    {openFAQ === index ? (
-                      <Minus className="text-[#1F3D2B]" />
-                    ) : (
-                      <Plus className="text-[#3E6B53]" />
-                    )}
+
+                    {/* Icon - fixed size container, always visible */}
+                    <div className="flex items-center justify-center min-w-[32px] h-8 flex-shrink-0">
+                      {openFAQ === index ? (
+                        <Minus className="w-6 h-6 text-[#1F3D2B]" />
+                      ) : (
+                        <Plus className="w-6 h-6 text-[#3E6B53]" />
+                      )}
+                    </div>
                   </button>
 
                   {openFAQ === index && (
-                    <div className="px-6 pb-6 text-slate-600">
-                      {faq.answer}
-                    </div>
+                    <div className="px-6 pb-6 text-slate-600">{faq.answer}</div>
                   )}
                 </motion.div>
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

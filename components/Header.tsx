@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -13,6 +14,7 @@ export function Header() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -22,18 +24,29 @@ export function Header() {
     href: string
   ) => {
     e.preventDefault();
-    e.stopPropagation();
 
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
 
     if (element) {
       const headerOffset = 100;
-      const y = element.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const y =
+        element.getBoundingClientRect().top +
+        window.scrollY -
+        headerOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
     }
 
-    setIsOpen(false);
+    // ✅ FIX: close mobile menu AFTER scroll starts
+    if (isOpen) {
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 300);
+    }
   };
 
   const navItems = [
