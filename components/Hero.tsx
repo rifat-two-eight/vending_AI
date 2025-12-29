@@ -9,7 +9,13 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-slate-50 to-gray-100">
       {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div 
+  className="absolute inset-0 opacity-30 pointer-events-none"
+  style={{
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23e5e5e5' fill-opacity='0.4'%3E%3Cpath d='M0 0h40v40H0zM40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E")`,
+    backgroundSize: "80px 80px",
+  }}
+/>
 
       {/* Animated gradient orbs */}
       <motion.div
@@ -44,7 +50,7 @@ export function Hero() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-800 mb-6 leading-tight">
               Next-Gen Unattended Retail.
               <br className="hidden sm:block" />
-              <span className="text-slate-600">Powered by AI.</span>
+              <span style={{ color: "#1F3D2B" }}>Powered by AI.</span>
             </h1>
 
             {/* Subheading */}
@@ -58,16 +64,16 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
                 size="lg"
-                className="bg-slate-700 hover:bg-slate-900 text-white px-8 py-6 text-lg group"
+                className="bg-[#1F3D2B] hover:bg-[#274F38] text-white px-8 py-6 text-lg group transition-colors"
               >
                 Book a Demo
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Link href="#contact" >
+              <Link href="#contact">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-gray-300 w-full text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-8 py-6 text-lg"
+                  className="border-[#3E6B53] text-[#1F3D2B] hover:bg-[#3E6B53]/10 hover:text-[#274F38] px-8 py-6 text-lg transition-colors"
                 >
                   Request a Quote
                 </Button>

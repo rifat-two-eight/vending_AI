@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Block Provisions",
   description: "Intelligent unattended retail solutions powered by AI",
    icons: {
-    icon: "/b.png",         
+    icon: "/block.png",         
   },
 };
 

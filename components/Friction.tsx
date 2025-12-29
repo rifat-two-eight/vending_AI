@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import { Zap, TrendingUp, Repeat, Clock } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
@@ -43,19 +43,19 @@ export function FrictionlessExperience() {
       number: "01",
       title: "Tap",
       description: "Customer taps their card or phone",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       number: "02",
       title: "Grab",
       description: "AI detects products automatically",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       number: "03",
       title: "Go",
       description: "Payment processed, inventory logged",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
   ];
 
@@ -74,16 +74,16 @@ export function FrictionlessExperience() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-6">
-              <Zap className="w-4 h-4 text-slate-600" />
-              <span className="text-sm text-slate-700 font-medium">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3E6B53]/10 border border-[#3E6B53]/30 mb-6">
+              <Zap className="w-4 h-4 text-[#1F3D2B]" />
+              <span className="text-sm text-[#1F3D2B] font-medium">
                 Zero Friction Checkout
               </span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6">
               Simple for customers.{" "}
-              <span className="text-slate-600">
+              <span className="text-[#1F3D2B]">
                 Profitable for operators.
               </span>
             </h2>
@@ -102,10 +102,10 @@ export function FrictionlessExperience() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start gap-4 bg-white rounded-xl p-4 border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all"
+                  className="flex items-start gap-4 bg-white rounded-xl p-4 border border-[#3E6B53]/30 hover:border-[#1F3D2B]/50 hover:shadow-md transition-all"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="w-5 h-5 text-slate-600" />
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#3E6B53]/20 to-[#1F3D2B]/10 flex items-center justify-center flex-shrink-0">
+                    <benefit.icon className="w-5 h-5 text-[#1F3D2B]" />
                   </div>
                   <div>
                     <h3 className="text-slate-800 font-semibold mb-1">
@@ -137,10 +137,10 @@ export function FrictionlessExperience() {
                 >
                   {/* Connection line */}
                   {index < steps.length - 1 && (
-                    <div className="absolute left-8 top-20 w-0.5 h-6 bg-gradient-to-b from-slate-300 to-transparent" />
+                    <div className="absolute left-8 top-20 w-0.5 h-6 bg-gradient-to-b from-[#3E6B53]/30 to-transparent" />
                   )}
 
-                  <div className="relative bg-white border border-slate-200 rounded-2xl p-6 hover:border-slate-300 hover:shadow-lg transition-all">
+                  <div className="relative bg-white border border-[#3E6B53]/30 rounded-2xl p-6 hover:border-[#1F3D2B]/50 hover:shadow-lg transition-all">
                     <div className="flex items-center gap-4">
                       {/* Number */}
                       <div
@@ -180,7 +180,7 @@ export function FrictionlessExperience() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-slate-200/50 to-slate-300/50 rounded-full blur-2xl"
+              className="absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-[#3E6B53]/20 to-[#1F3D2B]/10 rounded-full blur-2xl"
             />
           </motion.div>
         </div>

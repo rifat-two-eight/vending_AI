@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import {
   Brain,
@@ -16,37 +16,37 @@ export function SmartHardware() {
       icon: Brain,
       title: "AI-Powered Recognition",
       description: "Visual product detection without barcodes",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       icon: CreditCard,
       title: "Cashless Payments",
       description: "Apple Pay, Google Pay, contactless cards",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       icon: Activity,
       title: "Remote Diagnostics",
       description: "Real-time health monitoring and alerts",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       icon: Grid3x3,
       title: "Modular Shelving",
       description: "Flexible configuration for any product type",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       icon: Database,
       title: "Large Catalogs",
       description: "Support for evolving product inventories",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
     {
       icon: Shield,
       title: "Built to Last",
       description: "Engineered for real environments",
-      color: "from-slate-600 to-slate-800",
+      color: "from-[#1F3D2B] to-[#274F38]",
     },
   ];
 
@@ -63,7 +63,7 @@ export function SmartHardware() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-200 rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#3E6B53]/20 rounded-full blur-3xl"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,16 +75,14 @@ export function SmartHardware() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-6">
-            <Brain className="w-4 h-4 text-slate-600" />
-            <span className="text-sm text-slate-700 font-medium">Enterprise Grade</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3E6B53]/10 border border-[#3E6B53]/30 mb-6">
+            <Brain className="w-4 h-4 text-[#1F3D2B]" />
+            <span className="text-sm text-[#1F3D2B] font-medium">Enterprise Grade</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6">
             Smart Hardware,{" "}
-            <span className="text-slate-600">
-              Built to Perform
-            </span>
+            <span className="text-[#1F3D2B]">Built to Perform</span>
           </h2>
 
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-4">
@@ -109,9 +107,9 @@ export function SmartHardware() {
               whileHover={{ y: -5 }}
               className="group relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl from-slate-200/50 to-slate-300/50" />
+              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl blur-xl from-[#3E6B53]/20 to-[#1F3D2B]/10" />
 
-              <div className="relative bg-white border border-slate-200 rounded-xl p-6 h-full hover:border-slate-300 hover:shadow-lg transition-all">
+              <div className="relative bg-white border border-[#3E6B53]/30 rounded-xl p-6 h-full hover:border-[#1F3D2B]/50 hover:shadow-lg transition-all">
                 <div
                   className={`w-12 h-12 rounded-lg bg-gradient-to-br ${capability.color} flex items-center justify-center mb-4 shadow-lg`}
                 >
@@ -137,7 +135,7 @@ export function SmartHardware() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="relative"
         >
-          <div className="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg">
+          <div className="bg-gradient-to-br from-[#3E6B53]/5 to-white border border-[#3E6B53]/20 rounded-2xl p-6 sm:p-8 lg:p-12 shadow-lg">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left - Image */}
               <motion.div
@@ -163,9 +161,7 @@ export function SmartHardware() {
                 <h3 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-6">
                   Flexible Capacity.
                   <br />
-                  <span className="text-slate-600">
-                    Endless Variety.
-                  </span>
+                  <span className="text-[#1F3D2B]">Endless Variety.</span>
                 </h3>
 
                 <p className="text-slate-600 leading-relaxed mb-8 text-lg">
@@ -189,9 +185,9 @@ export function SmartHardware() {
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.05 }}
-                      className="bg-white rounded-xl p-5 sm:p-6 border border-slate-200 shadow-md text-center"
+                      className="bg-white rounded-xl p-5 sm:p-6 border border-[#3E6B53]/30 shadow-md text-center hover:border-[#1F3D2B]/50 transition-colors"
                     >
-                      <div className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-slate-600 to-slate-800 mb-2">
+                      <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-[#1F3D2B] to-[#274F38] bg-clip-text text-transparent mb-2">
                         {stat.value}
                       </div>
                       <div className="text-sm sm:text-base text-slate-700 font-medium">

@@ -1,94 +1,88 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, MessageSquare, Plus, Minus, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 export function ContactFAQ() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    user_email: "",
-    company: "",
-    message: "",
-  });
+  const formRef = useRef<HTMLFormElement>(null);
 
   const faqs = [
     {
-      question: "What types of products can the machines handle?",
+      question: "How does it work?",
       answer:
-        "Our machines support a wide variety of products including snacks, drinks, fresh items, toiletries, and convenience goods. With 75+ unique SKUs and 300+ total items capacity, you can configure each machine to match your location's needs.",
+        "Our AI-powered vending machine uses computer vision and artificial intelligence to automatically detect which items a customer takes. The system charges the customer accurately and updates inventory in real time—without traditional buttons, product selections, or manual input.",
     },
     {
-      question: "How does the AI product recognition work?",
+      question:
+        "Do customers need a specific app or any setup to make a purchase?",
       answer:
-        "Our machines use advanced computer vision AI to visually detect products without requiring barcodes. The system automatically identifies items when customers remove them, processes payment, and updates inventory in real-time.",
+        "No. Customers simply tap their phone using Apple Pay or tap a credit card to pay. There is no app, account, or setup required. They tap to unlock the fridge, take what they want, and walk away—fast and seamless.",
     },
     {
-      question: "What are the placement requirements?",
+      question: "What types of products can I sell?",
       answer:
-        "We look for high-traffic locations such as offices, residential buildings, gyms, and commercial spaces. Ideal locations have consistent foot traffic and adequate space for the machine footprint. We handle all installation and ongoing operations.",
+        "Because the machine uses computer vision rather than fixed slots or scales, it supports a wide range of products. You can sell snacks, beverages, electronics, personal care items, and more. As long as the product is registered in our system, it can be sold accurately.",
     },
     {
-      question: "How is pricing structured?",
+      question: "Can I add my own logo or branding?",
       answer:
-        "Pricing depends on machine configuration, whether you're purchasing or using our placement service, software and support needs, and fleet size. We provide transparent, straightforward pricing aligned with long-term operator success.",
+        "Yes. We offer custom-wrapped samples and fully branded machines. Our team can also assist with graphic design if needed. Contact us to discuss branding options and timelines.",
     },
     {
-      question: "What kind of support and maintenance is included?",
+      question: "What is the warranty and support coverage?",
       answer:
-        "Our machines feature remote diagnostics and health monitoring. For placed machines, we handle all stocking, maintenance, and operations. For purchased machines, we provide comprehensive support, monitoring tools, and maintenance alerts through our VMS platform.",
+        "We provide a one-year warranty on parts and lifetime technical support. If you need help with software issues or hardware installation, our support team is available to assist.",
+    },
+    {
+      question:
+        "Are there any fees to place a machine, and do I have input on product selection?",
+      answer:
+        "There is no placement fee. We handle installation, stocking, and refills as part of the agreement. Product selection is guided by sales data from similar locations and local demand, but we actively consider feedback and preferences whenever possible. Placement is subject to location fit and performance criteria.",
+    },
+    {
+      question:
+        "Do I need to sign a contract to place a machine at my location?",
+      answer:
+        "No long-term contract is required for machine placement. You are free to try the system, and if it does not meet your expectations, you may cancel at any time with 30 days’ notice. This allows us to coordinate removal of the machine and transition out smoothly.",
+    },
+    {
+      question: "What is your return policy if I purchase a machine?",
+      answer:
+        "We offer a 30-day money-back guarantee on purchased machines. The machine must be returned in the same condition as delivered, with no damage or modifications. All purchased machines include a one-year parts warranty and lifetime technical support.",
     },
   ];
 
-  const handleSubmit = async () => {
-    if (!formData.user_email || !formData.message) {
-      toast.error("Missing Information", {
-        description: "Please fill in email and message fields.",
-      });
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.user_email)) {
-      toast.error("Invalid Email", {
-        description: "Please enter a valid email address.",
-      });
-      return;
-    }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
 
     setIsSubmitting(true);
 
     try {
-      await emailjs.send(
-        "service_g1ubb5m",
-        "template_wh30o6r",
-        {
-          user_email: formData.user_email,
-          company: formData.company,
-          message: formData.message,
-          to_email: "rifat28.dev@gmail.com",
-        },
-        "8QCN5ni9Fr-CBDh_n"
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
-      toast.success("Message Sent!", {
-        description: "We'll get back to you shortly.",
+      toast.success("Message sent successfully!", {
+        description: "We’ll get back to you shortly.",
       });
 
-      setFormData({
-        user_email: "",
-        company: "",
-        message: "",
-      });
-    } catch (error) {
+      formRef.current.reset();
+    } catch (error: any) {
       console.error("EmailJS Error:", error);
-      toast.error("Failed to Send", {
-        description: "Please try again or contact us directly.",
+      toast.error("Failed to send message", {
+        description:
+          error?.text || "Recipient email is not configured in EmailJS.",
       });
     } finally {
       setIsSubmitting(false);
@@ -101,7 +95,7 @@ export function ContactFAQ() {
 
   return (
     <section id="contact" className="py-24 bg-white relative overflow-hidden">
-      {/* Subtle gradient background - matching analytics style */}
+      {/* Background blur */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-slate-100/40 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/40 rounded-full blur-3xl" />
@@ -109,79 +103,72 @@ export function ContactFAQ() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
-          {/* Contact Form */}
+
+          {/* CONTACT FORM */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-6">
-              <Mail className="w-4 h-4 text-slate-600" />
-              <span className="text-sm text-slate-700 font-medium">Get in Touch</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3E6B53]/10 border border-[#3E6B53]/30 mb-6">
+              <Mail className="w-4 h-4 text-[#1F3D2B]" />
+              <span className="text-sm font-medium text-[#1F3D2B]">
+                Get in Touch
+              </span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6">
-              Contact{" "}
-              <span className="text-slate-600">Us</span>
+              Contact <span className="text-[#1F3D2B]">Us</span>
             </h2>
 
             <p className="text-xl text-slate-600 mb-8">
-              Fill out the form below or reach out directly. We're here to answer your questions.
+              Fill out the form below and we’ll get back to you shortly.
             </p>
 
-            <div className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="email"
-                  placeholder="your@email.com"
-                  value={formData.user_email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, user_email: e.target.value })
-                  }
-                  className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500 h-10"
+                  name="user_email"
                   required
+                  placeholder="your@email.com"
+                  className="focus:border-[#1F3D2B] focus:ring-[#1F3D2B]/20"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Company / Location Details
+                  Company / Location
                 </label>
                 <Input
                   type="text"
-                  placeholder="Company name and location type"
-                  value={formData.company}
-                  onChange={(e) =>
-                    setFormData({ ...formData, company: e.target.value })
-                  }
-                  className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500 h-14"
+                  name="company"
+                  placeholder="Company name or location"
+                  className="focus:border-[#1F3D2B] focus:ring-[#1F3D2B]/20"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  How can we help? <span className="text-red-500">*</span>
+                  Message <span className="text-red-500">*</span>
                 </label>
                 <Textarea
-                  placeholder="Tell us about your vending needs..."
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 resize-none focus:border-slate-500 focus:ring-slate-500 h-32"
+                  name="message"
                   required
+                  rows={5}
+                  placeholder="Tell us how we can help..."
+                  className="focus:border-[#1F3D2B] focus:ring-[#1F3D2B]/20"
                 />
               </div>
 
               <Button
-                onClick={handleSubmit}
+                type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-slate-700 hover:bg-slate-900 text-white shadow-lg disabled:opacity-50 transition-all h-12"
+                className="w-full h-12 bg-[#1F3D2B] hover:bg-[#274F38] text-white transition-colors"
               >
                 {isSubmitting ? (
                   <>
@@ -192,75 +179,57 @@ export function ContactFAQ() {
                   "Send Message"
                 )}
               </Button>
-            </div>
+            </form>
           </motion.div>
 
-          {/* FAQ */}
+          {/* FAQ SECTION */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-6">
-              <MessageSquare className="w-4 h-4 text-slate-600" />
-              <span className="text-sm text-slate-700 font-medium">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3E6B53]/10 border border-[#3E6B53]/30 mb-6">
+              <MessageSquare className="w-4 h-4 text-[#1F3D2B]" />
+              <span className="text-sm font-medium text-[#1F3D2B]">
                 Frequently Asked Questions
               </span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6">
-              Common{" "}
-              <span className="text-slate-600">Questions</span>
+              Common <span className="text-[#1F3D2B]">Questions</span>
             </h2>
-
-            <p className="text-xl text-slate-600 mb-8">
-              Have questions about hardware, pricing, placement or operations?
-            </p>
 
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 hover:shadow-lg transition-all"
+                  className="bg-white border border-[#3E6B53]/30 rounded-xl overflow-hidden hover:border-[#1F3D2B]/50 transition-colors"
                 >
                   <button
                     onClick={() => toggleFAQ(index)}
                     className="w-full flex items-center justify-between p-6 text-left"
                   >
-                    <span className="text-slate-800 font-semibold pr-4">
+                    <span className="font-semibold text-slate-800">
                       {faq.question}
                     </span>
                     {openFAQ === index ? (
-                      <Minus className="w-5 h-5 text-slate-600 flex-shrink-0" />
+                      <Minus className="text-[#1F3D2B]" />
                     ) : (
-                      <Plus className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                      <Plus className="text-[#3E6B53]" />
                     )}
                   </button>
 
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: openFAQ === index ? "auto" : 0,
-                      opacity: openFAQ === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-6">
-                      <p className="text-slate-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                  {openFAQ === index && (
+                    <div className="px-6 pb-6 text-slate-600">
+                      {faq.answer}
                     </div>
-                  </motion.div>
+                  )}
                 </motion.div>
               ))}
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -49,8 +49,8 @@ export function VMSAnalytics() {
     <section id="software" className="py-24 bg-white relative overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-slate-100/50 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-200/50 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#3E6B53]/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#3E6B53]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,14 +62,14 @@ export function VMSAnalytics() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-6">
-            <Monitor className="w-4 h-4 text-slate-600" />
-            <span className="text-sm text-slate-700 font-medium">Full Control</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3E6B53]/10 border border-[#3E6B53]/30 mb-6">
+            <Monitor className="w-4 h-4 text-[#1F3D2B]" />
+            <span className="text-sm text-[#1F3D2B] font-medium">Full Control</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 mb-6">
             Vending Management{" "}
-            <span className="text-slate-600">
+            <span className="text-[#1F3D2B]">
               Software
             </span>
           </h2>
@@ -98,8 +98,8 @@ export function VMSAnalytics() {
               onClick={() => setActiveTab(index)}
               className={`px-6 py-3 rounded-xl font-medium transition-all ${
                 activeTab === index
-                  ? "bg-slate-700 hover:bg-slate-900 text-white shadow-lg"
-                  : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                  ? "bg-[#1F3D2B] hover:bg-[#274F38] text-white shadow-lg"
+                  : "bg-white border border-[#3E6B53]/30 text-[#1F3D2B] hover:bg-[#3E6B53]/10 hover:text-[#274F38]"
               }`}
             >
               {tab.name}
@@ -122,10 +122,10 @@ export function VMSAnalytics() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="bg-white border border-slate-200 rounded-xl p-6 hover:border-slate-300 hover:shadow-lg transition-all group"
+              className="bg-white border border-[#3E6B53]/30 rounded-xl p-6 hover:border-[#1F3D2B]/50 hover:shadow-lg transition-all group"
             >
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <item.icon className="w-6 h-6 text-slate-600" />
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#3E6B53]/20 to-[#1F3D2B]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <item.icon className="w-6 h-6 text-[#1F3D2B]" />
               </div>
               <h3 className="text-lg font-bold text-slate-800 mb-2">
                 {item.title}
@@ -167,9 +167,9 @@ export function VMSAnalytics() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-center"
         >
-          <div className="inline-block bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-2xl p-8 shadow-lg">
+          <div className="inline-block bg-gradient-to-br from-[#3E6B53]/5 to-white border border-[#3E6B53]/20 rounded-2xl p-8 shadow-lg">
             <p className="text-lg text-slate-700 mb-2">
-              <span className="font-semibold text-slate-800">
+              <span className="font-semibold text-[#1F3D2B]">
                 Make decisions based on data,
               </span>{" "}
               not guesswork.

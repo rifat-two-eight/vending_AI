@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +22,13 @@ export function Header() {
     href: string
   ) => {
     e.preventDefault();
-    e.stopPropagation(); // ← Prevents event bubbling issues on mobile
+    e.stopPropagation();
 
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
 
     if (element) {
-      const headerOffset = 100; // adjust this value if content is hidden under header
+      const headerOffset = 100;
       const y = element.getBoundingClientRect().top + window.scrollY - headerOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -51,8 +50,8 @@ export function Header() {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-lg shadow-black/5"
-          : "bg-white/80 backdrop-blur-md"
+          ? "bg-white/95 backdrop-blur-xl border-b border-[#3E6B53]/40 shadow-lg shadow-black/5"
+          : "bg-white/80 backdrop-blur-md border-b border-[#3E6B53]/20"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,11 +64,8 @@ export function Header() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="w-10 h-10 rounded-lg flex items-center justify-center">
-              <Image src="/b.png" height={20} width={50} alt="logo" />
+              <Image src="/block.png" height={20} width={50} alt="logo" />
             </div>
-            <span className="text-xl font-bold text-slate-600 group-hover:text-slate-800 transition-colors">
-              Block Provisions
-            </span>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -82,10 +78,10 @@ export function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-slate-600 hover:text-slate-900 transition-colors text-sm font-medium relative group cursor-pointer"
+                className="text-[#1F3D2B] hover:text-[#274F38] transition-colors text-sm font-medium relative group cursor-pointer"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-slate-800 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#1F3D2B] group-hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
@@ -94,7 +90,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <Button
               onClick={(e) => scrollToSection(e, "#contact")}
-              className="bg-slate-700 hover:bg-slate-900 text-white shadow-lg transition-all"
+              className="bg-[#1F3D2B] hover:bg-[#274F38] text-white shadow-lg transition-all"
             >
               Contact Us
             </Button>
@@ -103,14 +99,14 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-slate-900 p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            className="md:hidden text-[#1F3D2B] p-2 hover:bg-[#3E6B53]/10 rounded-lg transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu - Keeping your original style */}
+        {/* Mobile Menu */}
         <motion.div
           initial={false}
           animate={{
@@ -118,7 +114,7 @@ export function Header() {
             opacity: isOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden border-t border-slate-200 bg-white" // added subtle border for better look
+          className="md:hidden overflow-hidden border-t border-[#3E6B53]/20 bg-white"
         >
           <div className="py-5 px-4 space-y-3">
             {navItems.map((item) => (
@@ -126,20 +122,19 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="block px-4 py-3 text-base font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
+                className="block px-4 py-3 text-base font-medium text-[#1F3D2B] hover:text-[#274F38] hover:bg-[#3E6B53]/10 rounded-lg transition-colors cursor-pointer"
               >
                 {item.name}
               </a>
             ))}
 
             <div className="pt-4 px-4">
-              <Link href="#contact">
               <Button
                 onClick={(e) => scrollToSection(e, "#contact")}
-                className="w-full bg-slate-700 hover:bg-slate-900 text-white shadow-md transition-all py-6 text-base"
+                className="w-full bg-[#1F3D2B] hover:bg-[#274F38] text-white shadow-md transition-all py-6 text-base"
               >
                 Contact Us
-              </Button></Link>
+              </Button>
             </div>
           </div>
         </motion.div>
